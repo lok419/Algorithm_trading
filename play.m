@@ -68,7 +68,8 @@ menu1 = 'HSBC';
 menu2 = 'Geely';
 menu3 = 'SHK';
 menu4 = 'Tencent';
-menu_string = {menu1,menu2,menu3,menu4};
+menu5 = 'HSI';
+menu_string = {menu1,menu2,menu3,menu4,menu5};
 set(handles.popupmenu2,'string',menu_string);
 
 
@@ -129,7 +130,7 @@ end_date = datenum(char(get(handles.edit2,'String')),'dd/mm/yyyy');
 handles.filename = get(handles.popupmenu2,'String');
 handles.filename = char(handles.filename(get(handles.popupmenu2,'Value')));
 
-[~, ~, raw] = xlsread(handles.filename,'');
+[~, ~, raw] = xlsread(strcat('./data/', handles.filename),'');
 raw = raw(2:end,:);
 raw(cellfun(@(x) ~isempty(x) && isnumeric(x) && isnan(x),raw)) = {''};
 R = cellfun(@(x) ~isnumeric(x) && ~islogical(x),raw); % Find non-numeric cells
@@ -607,7 +608,7 @@ function Signal_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.status{end+1}='';
-handles.status{end+1}='Generate signal.....';
+handles.status{end+1}='Generate trading signal';
 set(handles.text1,'String',fliplr(handles.status));
 
 algos = get(handles.popupmenu1,'Value');
@@ -632,7 +633,7 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.status{end+1}='';
-handles.status{end+1}='Trade.....';
+handles.status{end+1}='Trade';
 set(handles.text1,'String',fliplr(handles.status));
 guidata(hObject, handles);
 
@@ -643,7 +644,7 @@ function pushbutton5_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.status{end+1}='';
-handles.status{end+1}='Performance';
+handles.status{end+1}='Performance of back-test';
 set(handles.text1,'String',fliplr(handles.status));
 
 
