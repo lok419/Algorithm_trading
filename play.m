@@ -633,17 +633,6 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.status{end+1}='';
-handles.status{end+1}='Trade';
-set(handles.text1,'String',fliplr(handles.status));
-guidata(hObject, handles);
-
-
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-handles.status{end+1}='';
 handles.status{end+1}='Performance of back-test';
 set(handles.text1,'String',fliplr(handles.status));
 
